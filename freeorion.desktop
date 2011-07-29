@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=FreeOrion
+GenericName=FreeOrion
+Comment=run a FreeOrion game
+Exec=freeorion
+Icon=freeorion
+Terminal=false
+Type=Application
+Categories=Game;StrategyGame;

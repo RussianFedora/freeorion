@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=FreeOrion Server
+GenericName=FreeOrion Server
+Comment=run a server of FreeOrion game
+Exec=freeoriond
+Icon=freeoriond
+Terminal=true
+Type=Application
+Categories=Game;StrategyGame;ConsoleOnly;
