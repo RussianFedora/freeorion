@@ -1,6 +1,6 @@
 Name:           freeorion
 Version:        0.3.15
-Release:        1%{?dist}
+Release:        2%{?dist}.R
 Summary:        FreeOrion is a free, open source, turn-based space empire and galactic conquest (4X) computer game.
 
 License:        GPLv2
@@ -128,5 +128,8 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}d.desktop
 
 
 %changelog
+* Tue Aug  2 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.3.15-2.R
+- Update for new ogre version
+
 * Wed Jul 27 2011 Alexei Panov <elemc AT atisserv DOT ru> - 0.3.15-1
 - Initial build
