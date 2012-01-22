@@ -1,0 +1,47 @@
+diff -uNr freeorion-0.3.17/client/human/CMakeLists.txt freeorion-0.3.17-compile-fix/client/human/CMakeLists.txt
+--- freeorion-0.3.17/client/human/CMakeLists.txt	2011-09-01 23:49:40.000000000 +0200
++++ freeorion-0.3.17-compile-fix/client/human/CMakeLists.txt	2012-01-21 19:52:22.546290938 +0100
+@@ -5,16 +5,14 @@
+ 
+ message("-- Configuring freeorion")
+ 
+-if (WIN32)
+-   find_package(OpenGL)
+-   if (OPENGL_FOUND)
+-       if (NOT OPENGL_GLU_FOUND)
+-           message(FATAL_ERROR "OpenGL GLU library not found.")
+-       endif ()
+-       include_directories(${OPENGL_INCLUDE_DIR})
+-   else ()
+-       message(FATAL_ERROR "OpenGL library not found.")
+-   endif ()
++find_package(OpenGL)
++if (OPENGL_FOUND)
++    if (NOT OPENGL_GLU_FOUND)
++        message(FATAL_ERROR "OpenGL GLU library not found.")
++    endif ()
++    include_directories(${OPENGL_INCLUDE_DIR})
++else ()
++    message(FATAL_ERROR "OpenGL library not found.")
+ endif ()
+ 
+ find_package(OpenAL)
+@@ -222,6 +220,7 @@
+     ${VORBIS_LIBRARIES}
+     ${BULLET_LIBRARIES}
+     ${ZLIB_LIBRARY}
++    ${OPENGL_LIBRARIES}
+ )
+ 
+ if (WIN32)
+diff -uNr freeorion-0.3.17/universe/Parser.h freeorion-0.3.17-compile-fix/universe/Parser.h
+--- freeorion-0.3.17/universe/Parser.h	2011-09-16 09:20:10.000000000 +0200
++++ freeorion-0.3.17-compile-fix/universe/Parser.h	2012-01-21 19:53:39.454868867 +0100
+@@ -44,6 +44,7 @@
+ ////////////////////////////////////////////////////////////
+ struct Skip : boost::spirit::classic::grammar<Skip>
+ {
++    Skip() { };
+     template <class ScannerT>
+     struct definition
+     {

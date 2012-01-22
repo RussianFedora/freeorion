@@ -1,19 +1,11 @@
 #!/bin/sh
 
+URL="https://freeorion.svn.sourceforge.net/svnroot/freeorion/trunk/FreeOrion"
 NAME=freeorion
-SVN_REV=4046
+SVN_REV=4282
+VERSION=0.3.17
 
-svn co -r ${SVN_REV} https://freeorion.svn.sourceforge.net/svnroot/freeorion/trunk ${NAME} > /dev/null 2>&1
-cd ${NAME}
 
-# Get version of gigi
-VERSION=`cat FreeOrion/CMakeLists.txt | grep 'set(FREEORION_VERSION' | awk '{print $2}' | sed 's|)||g'`
-FULL_NAME=${NAME}-${VERSION}
-
-# Remove .svn
-find . -name .svn -exec rm -rf {} \; > /dev/null 2>&1
-
-mv FreeOrion $FULL_NAME
-tar cfjv ../${FULL_NAME}.tar.bz2 $FULL_NAME > /dev/null 2>&1
-cd ..
-rm -rf ${NAME}
+svn export -r ${SVN_REV} ${URL} ${NAME}-${VERSION}
+tar -czvf ${NAME}-${VERSION}.tar.gz ${NAME}-${VERSION}/
+rm -rf ${NAME}-${VERSION}
