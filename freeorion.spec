@@ -105,6 +105,18 @@ install -m 644 -D %{SOURCE10} \
 desktop-file-install --dir=${RPM_BUILD_ROOT}%{_datadir}/applications %{SOURCE11}
 desktop-file-install --dir=${RPM_BUILD_ROOT}%{_datadir}/applications %{SOURCE12}
 
+%post
+/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
+
+%postun
+if [ $1 -eq 0 ] ; then
+    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
+    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+fi
+
+%posttrans
+/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+
 %files
 %doc changelog.txt
 %{_bindir}/%{name}
